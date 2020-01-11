@@ -16,7 +16,6 @@ class Simple_Scatter:
         from bokeh.palettes import brewer
         from bokeh.models import ColumnDataSource,Legend, LegendItem
 
-        print('df\n',df)
         data_names=df.columns
 
         colors=brewer['RdBu'][4]
