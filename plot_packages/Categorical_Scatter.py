@@ -6,8 +6,8 @@ class Categorical_Scatter:
         return
 
     def make_bokeh_cat_scat(self,p,df,title='Needs Title',xlabel='Needs xlabel',ylabel='Needs ylabel',color='navy'):
-        '''Make a simple bokeh scatter plot.  Has simple controls for scaling,
-        positioning, and reset.
+        '''Make a simple bokeh scatter plot with categorical on y axis.  Has
+        simple controls for scaling, positioning, and reset.
 
         Assumes a figure p pre-established
         df is a dataframe with xvalues in column 0
