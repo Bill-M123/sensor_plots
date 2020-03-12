@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as pyplot
+import os
 import bokeh
 
 from bokeh.plotting import figure
@@ -13,14 +14,17 @@ from plot_packages.Simple_Scatter import Simple_Scatter
 from plot_packages.FFT_Scatter import FFT_Scatter
 from plot_packages.Make_Wave_Data import Make_Wave_Data
 
-
+data_dir=os.getcwd()+'/data/'
 scatter_plot=Simple_Scatter()
 fft_plot=FFT_Scatter()
 wave_data=Make_Wave_Data()
 
 # Create sample data
 df=wave_data.make_square_wave()
+df.to_csv(data_dir+'basic_square.csv')
 df2=wave_data.add_noise(df,fs_ratio=0.2)
+df2.to_csv(data_dir+'noisy_square.csv')
+
 
 
 p = figure(plot_height=300, plot_width=900)
