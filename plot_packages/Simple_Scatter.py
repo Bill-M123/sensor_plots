@@ -5,7 +5,7 @@ class Simple_Scatter:
 
         return
 
-    def make_bokeh_scatter(self,p,df,title='Needs Title',xlabel='Needs xlabel',ylabel='Needs ylabel',color='navy'):
+    def make_bokeh_scatter(self,p,df,title='Needs Title',xlabel='Needs xlabel',ylabel='Needs ylabel',color='default'):
         '''Make a simple bokeh scatter plot.  Has simple controls for scaling,
         positioning, and reset.
 
@@ -15,15 +15,23 @@ class Simple_Scatter:
 
         from bokeh.palettes import brewer
         from bokeh.models import ColumnDataSource,Legend, LegendItem
+        from bokeh.io import show, output_file
 
         data_names=df.columns
+        print(data_names)
+        print(df.head(3))
 
         colors=brewer['RdBu'][4]
         legend_items=[]
 
         for y in range(1,len(data_names)):
-            color=colors[y%4]
-            r=p.circle(x=df.iloc[:,0],y=df.iloc[:,y],size=7.5,color=color)
+            if color=='default':
+                pcolor=colors[y%4]
+                print('y',y,'pcolor',pcolor)
+            else:
+                pcolor=color
+                print('y',y,'pcolor',pcolor)
+            r=p.circle(x=df.iloc[:,0],y=df.iloc[:,y],size=7.5,color=pcolor)
             #items.append((data_names[y],[r]))
             legend_items.append(LegendItem(label=data_names[y], renderers=[r]))
 
@@ -38,5 +46,5 @@ class Simple_Scatter:
         legend1 = Legend(items=legend_items, location='center')
         p.add_layout(legend1,'right')
         p.legend.click_policy="hide"
-
+        show(p)
         return p
